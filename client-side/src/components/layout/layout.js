@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from '../header/header'
+import Navbar from '../navbar/navbar'
 
-const layout = (props) => {
+function layout(props) {
     return (
         <div className='container dark'>
             <div className='app'>
-                <Header />
+                <Navbar />
                 {props.children}
             </div>
 
