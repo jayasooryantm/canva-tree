@@ -1,8 +1,4 @@
 import React from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "bootstrap/dist/js/bootstrap.min.js";
-import "@popperjs/core/dist/umd/popper.min.js"
 import "./navbar.css"
 
 function navbar() {
@@ -16,16 +12,16 @@ function navbar() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Pricing</a>
+                            <a className="nav-link" href="/pricing">Pricing</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Help</a>
+                            <a className="nav-link" href="/help">Help</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Login</a>
+                            <a className="nav-link" href="/login">Login</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Sign Up</a>
+                            <a className="nav-link" href="/signup">Sign Up</a>
                         </li>
                     </ul>
                 </div>

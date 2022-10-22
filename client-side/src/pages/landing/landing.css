@@ -1,6 +1,33 @@
+.outer-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .header-card {
-    height: 400px;
+    background: url('../../../public/images/landing-header.png') no-repeat center center;
+    height: 500px;
+    width: 100%;
     background-repeat: no-repeat;
-    background-color: #f8f9fb;
+    background-size: contain;
     background-position: bottom;
+    background-color: #f5f5f5;
+}
+
+.cardInfo {
+    width: 450px;
+    text-align: left;
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+img {
+    width: 500px;
+    height: 380px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #888888;
 }

@@ -2,10 +2,8 @@
 
 .keep-down {
     position: absolute;
-    bottom: 0;
     width: 100%;
     padding-top: 20px;
-    margin-bottom: 0 !important;
 }
 
 .para-justify {
