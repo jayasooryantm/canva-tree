@@ -1,9 +1,12 @@
+import uvicorn
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+
+from core.routes import apiRouter
+
 
 app = FastAPI()
+app.include_router(apiRouter)
 
 
-@app.get("/")
-async def landing_page():
-    return {"message": "Hello World"}
+if __name__ == "__main__":
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
