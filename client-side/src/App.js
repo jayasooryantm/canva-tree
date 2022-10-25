@@ -10,6 +10,7 @@ import Landing from './pages/landing/landing.js';
 import Login from './pages/login/login.js';
 import Signup from './pages/signup/signup.js';
 import Terms from './pages/terms/terms.js';
+import NotFound from './pages/notfound/notfound.js';
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' exact element={<Landing />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
+          <Route path='/login' exact element={<Login />} />
+          <Route path='/signup' exact element={<Signup />} />
           <Route path='/terms' exact element={<Terms />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>
