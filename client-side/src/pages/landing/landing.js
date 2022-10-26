@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import "./landing.css"
 
 //importing bootstrap libraries
@@ -9,12 +9,20 @@ import "@popperjs/core/dist/umd/popper.min.js"
 
 
 function landing() {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        fetch('/')
+            .then((res) => res.json())
+            .then((data) => setData(data));
+    }, []);
     return (
         <div className='outer-div'>
             <div className='header-card'>
                 <h2>THE ONLY LINK YOU’LL EVER NEED</h2>
                 <p>Anim pariatur cliche reprehenderit,enim eiusmod high life accusamus
                     terry richardson ad squid.</p>
+                <p>This is from server: {!data ? "Loading..." : data}</p>
                 <button className='btn btn-success'>Get Started For Free</button>
             </div>
             <br></br>
