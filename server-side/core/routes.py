@@ -1,10 +1,12 @@
 # importing fastapi libraries
 from fastapi import APIRouter
 
-# importing application layers
-from ApplicationLayer.API import api
+# importing api routes
+from ApplicationLayer.PagesAPI import pages_api
+from ApplicationLayer.AccountAPI import signup_api
 
 
-apiRouter = APIRouter()
+_api_Router = APIRouter()
 
-apiRouter.include_router(api.router, tags=["landing"])
+_api_Router.include_router(pages_api.router, tags=["landing"])
+_api_Router.include_router(signup_api.router, tags=["account"])

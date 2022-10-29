@@ -8,13 +8,13 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "@popperjs/core/dist/umd/popper.min.js"
 
 
-function landing() {
+function Landing() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch('/')
+        fetch('http://127.0.0.1:8000', 'GET')
             .then((res) => res.json())
-            .then((data) => setData(data));
+            .then((data) => setData(data.message));
     }, []);
     return (
         <div className='outer-div'>
@@ -76,4 +76,4 @@ function landing() {
     )
 }
 
-export default landing
+export default Landing
