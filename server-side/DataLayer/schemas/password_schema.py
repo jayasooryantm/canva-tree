@@ -1,14 +1,19 @@
 from pydantic import BaseModel
-from datetime import datetime as dt
+from DataLayer.schemas.mixin_schema import CreatedAtBy
 
 
-class Password_Model(BaseModel):
+class PasswordBaseSchema(BaseModel):
 
+    password_hash: str
+
+    class Config:
+        orm_mode = True
+
+
+class PasswordCreateSchema(CreatedAtBy, PasswordBaseSchema):
     pass_id: int
     ac_id: str
-    password_hash: str
     pass_salt: str
-    created_at: dt = dt.now()
-    updated_at: dt = dt.now()
-    created_by: int
-    updated_by: int
+
+    class Config:
+        orm_mode = True
