@@ -1,14 +1,22 @@
 from pydantic import BaseModel
-from datetime import datetime as dt
+from typing import Optional, List
+from DataLayer.schemas.mixin_schema import CreatedAt
 
 
-class Account_Model(BaseModel):
+class AccountBaseSchema(BaseModel):
 
-    ac_id: int
-    username: str
     email: str
+    username: Optional[str]
+
+    class Config:
+        orm_mode = True
+
+
+class AccountCreateSchema(CreatedAt, AccountBaseSchema):
+    ac_id: int
     is_active: bool
     is_email_verified: bool
-    ext_login_id: str
-    created_at: dt = dt.now()
-    updated_at: dt = dt.now()
+    ext_login_id: Optional[str]
+
+    class Config:
+        orm_mode = True
