@@ -1,5 +1,5 @@
 auth_token = {
-    "secret_key": "876rescvbnjkoitredsxcvbjkio87632qase45tfvgy78ijmjko8765"
+    "secret_key": "jhgfhR5_67uoIUYgjmNBvf-KmnOybf45oih_gVBkjkj"
 }
 
 database_config = {
