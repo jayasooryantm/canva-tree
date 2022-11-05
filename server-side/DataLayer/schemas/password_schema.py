@@ -10,6 +10,15 @@ class PasswordBaseSchema(BaseModel):
         orm_mode = True
 
 
+class UserDetailsSchema(PasswordBaseSchema):
+
+    email: str
+    username: str | None = None
+
+    class Config:
+        orm_mode = True
+
+
 class PasswordCreateSchema(CreatedAtBy, PasswordBaseSchema):
     pass_id: int
     ac_id: str
