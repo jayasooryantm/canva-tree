@@ -10,7 +10,7 @@ function notfound() {
             <p class="lead">
                 The page you’re looking for doesn’t exist.
             </p>
-            <Link to="/"><button class="btn btn-lg btn-outline-danger" type="button">Home</button></Link>
+            <Link to="/"><button class="btn btn-lg btn-outline-success" type="button">Home</button></Link>
         </div >
     )
 }
