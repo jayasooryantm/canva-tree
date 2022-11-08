@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../components/authenticator/auth';
 import "./landing.css"
@@ -6,6 +6,20 @@ import "./landing.css"
 
 function Landing() {
     let navigate = useNavigate();
+    const [message, setMessage] = useState("");
+
+    const getWelcomeMessage = async () => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        const response = await fetch('http://localhost:8000/greeting', requestOptions);
+        const data = await response.json();
+        setMessage(data.message);
+    }
+    useEffect(() => {
+        getWelcomeMessage();
+    }, []);
     return (
         <div className='outer-div'>
             <div className='header-card'>
@@ -18,6 +32,7 @@ function Landing() {
                     });
                 }}
                 >Get Started For Free</button>
+                <p>{message == undefined ? "Loading..." : message}</p>
             </div>
             <br></br>
             <div className='container'>

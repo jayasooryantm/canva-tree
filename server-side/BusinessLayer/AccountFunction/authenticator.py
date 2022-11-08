@@ -27,12 +27,13 @@ class AuthHandler():
         return jwt.encode(
             payload,
             self.secret,
-            algorithm='HS256'
+            algorithm=config.auth_token["algorithm"]
         )
 
     def decode_token(self, token):
         try:
-            payload = jwt.decode(token, self.secret, algorithms=['HS256'])
+            payload = jwt.decode(token, self.secret, algorithms=[
+                                 config.auth_token["algorithm"]])
             return payload['sub']
         except jwt.ExpiredSignatureError:
             raise HTTPException(

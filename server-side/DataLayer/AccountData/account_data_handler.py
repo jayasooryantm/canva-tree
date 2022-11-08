@@ -1,11 +1,20 @@
-from sqlalchemy.orm import Session
+
+# python libraries
+import string
+import random
 from datetime import datetime as dt
 import pytz
+# fastapi libraries
+from sqlalchemy.orm import Session
 from DataLayer.schemas.account_schema import AccountBaseSchema
 from DataLayer.schemas.password_schema import PasswordBaseSchema, UserDetailsSchema
 from DataLayer.models.account_model import Account_Model
 from DataLayer.models.password_model import Password_Model
 from DataLayer.database_handler import get_db
+
+
+def password_salt_generator(size=32, chars=string.ascii_lowercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 
 def get_user_by_email(account: UserDetailsSchema, _db: Session) -> UserDetailsSchema:
@@ -21,12 +30,11 @@ def get_user_by_email(account: UserDetailsSchema, _db: Session) -> UserDetailsSc
     return user_details
 
 
-def add_account_details(account: AccountBaseSchema,
-                        password: PasswordBaseSchema,
+def add_account_details(account: UserDetailsSchema,
                         _db: Session) -> dict:
 
     new_account = Account_Model(
-        ac_id=0,
+        ac_id=1,
         username=account.username,
         email=account.email,
         is_active=True,
@@ -36,14 +44,14 @@ def add_account_details(account: AccountBaseSchema,
 
     )
     new_password = Password_Model(
-        pass_id=0,
-        ac_id=0,
-        password_hash=password.password_hash,
-        pass_salt="b76erh76",
+        pass_id=1,
+        ac_id=1,
+        password_hash=account.password_hash,
+        pass_salt=password_salt_generator(),
         created_at=dt.now(tz=pytz.timezone("Europe/London")),
         updated_at=dt.now(tz=pytz.timezone("Europe/London")),
-        created_by=0,
-        updated_by=0
+        created_by=1,
+        updated_by=1
     )
 
     try:
