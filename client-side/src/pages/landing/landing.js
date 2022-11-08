@@ -1,29 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import auth from '../../components/authenticator/auth';
 import "./landing.css"
-
-//importing bootstrap libraries
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "bootstrap/dist/js/bootstrap.min.js";
-import "@popperjs/core/dist/umd/popper.min.js"
 
 
 function Landing() {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-        fetch('http://127.0.0.1:8000', 'GET')
-            .then((res) => res.json())
-            .then((data) => setData(data.message));
-    }, []);
+    let navigate = useNavigate();
     return (
         <div className='outer-div'>
             <div className='header-card'>
                 <h2>THE ONLY LINK YOU’LL EVER NEED</h2>
                 <p>Anim pariatur cliche reprehenderit,enim eiusmod high life accusamus
                     terry richardson ad squid.</p>
-                <p>This is from server: {!data ? "Loading..." : data}</p>
-                <button className='btn btn-success'>Get Started For Free</button>
+                <button className='btn btn-success' onClick={() => {
+                    auth.login(() => {
+                        navigate("/userdashboard");
+                    });
+                }}
+                >Get Started For Free</button>
             </div>
             <br></br>
             <div className='container'>
@@ -36,7 +30,11 @@ function Landing() {
                         <div className='cardInfo'>
                             <h3>Start Inspired</h3>
                             <p>With thousands of professional templates, images and quality content to choose from, get a headstart on bringing your best ideas and work to life.</p>
-                            <button className='btn btn-success'>Create a Design</button>
+                            <button className='btn btn-success' onClick={() => {
+                                auth.login(() => {
+                                    navigate("/userdashboard");
+                                });
+                            }}>Create a Design</button>
                         </div>
                     </div>
                 </div>
@@ -48,7 +46,11 @@ function Landing() {
                         <div className='cardInfo'>
                             <h3>Collaborate with ease</h3>
                             <p>Invite people to edit with you or set your whole team up in Canva Pro to manage brand assets, leave feedback, get approvals, and scale your visual content.</p>
-                            <button className='btn btn-success'>Start Now</button>
+                            <button className='btn btn-success' onClick={() => {
+                                auth.login(() => {
+                                    navigate("/userdashboard");
+                                });
+                            }}>Start Now</button>
                         </div>
                     </div>
                     <div className='col'>
@@ -67,7 +69,11 @@ function Landing() {
                         <div className='cardInfo'>
                             <h3>Share with pride</h3>
                             <p>With thousands of professional templates, images and quality content to choose from, get a headstart on bringing your best ideas and work to life.</p>
-                            <button className='btn btn-success'>Design Now</button>
+                            <button className='btn btn-success' onClick={() => {
+                                auth.login(() => {
+                                    navigate("/userdashboard");
+                                });
+                            }}>Design Now</button>
                         </div>
                     </div>
                 </div>
