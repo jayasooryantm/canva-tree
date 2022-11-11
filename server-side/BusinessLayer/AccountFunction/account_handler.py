@@ -4,8 +4,7 @@ from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from BusinessLayer.AccountFunction.authenticator import AuthHandler
 from DataLayer.AccountData.account_data_handler import add_account_details, get_user_by_email
-from DataLayer.schemas.account_schema import AccountBaseSchema
-from DataLayer.schemas.password_schema import PasswordBaseSchema, UserDetailsSchema
+from DataLayer.FastAPISchemas.Schemas import AccountBaseSchema, PasswordBaseSchema, UserDetailsSchema
 
 
 _auth_handler = AuthHandler()
