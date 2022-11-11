@@ -1,7 +1,7 @@
 
 # Fastapi libraries
 from BusinessLayer.AccountFunction.authenticator import AuthHandler
-from DataLayer.schemas.password_schema import UserDetailsSchema
+from DataLayer.FastAPISchemas.Schemas import UserDetailsSchema
 from DataLayer.database_handler import get_db
 from BusinessLayer.AccountFunction.account_handler import register_user, user_login, user_account
 from sqlalchemy.orm import Session

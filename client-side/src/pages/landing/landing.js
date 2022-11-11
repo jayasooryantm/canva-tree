@@ -32,7 +32,7 @@ function Landing() {
                     });
                 }}
                 >Get Started For Free</button>
-                <p>{message == undefined ? "Loading..." : message}</p>
+                <p>{message === undefined ? "Loading..." : message}</p>
             </div>
             <br></br>
             <div className='container'>

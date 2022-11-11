@@ -6,10 +6,8 @@ from datetime import datetime as dt
 import pytz
 # fastapi libraries
 from sqlalchemy.orm import Session
-from DataLayer.schemas.account_schema import AccountBaseSchema
-from DataLayer.schemas.password_schema import PasswordBaseSchema, UserDetailsSchema
-from DataLayer.models.account_model import Account_Model
-from DataLayer.models.password_model import Password_Model
+from DataLayer.FastAPISchemas.Schemas import AccountBaseSchema, PasswordBaseSchema, UserDetailsSchema
+from DataLayer.SQLModels.Models import Account_Model, Password_Model
 from DataLayer.database_handler import get_db
 
 
@@ -34,7 +32,6 @@ def add_account_details(account: UserDetailsSchema,
                         _db: Session) -> dict:
 
     new_account = Account_Model(
-        ac_id=1,
         username=account.username,
         email=account.email,
         is_active=True,
@@ -44,14 +41,10 @@ def add_account_details(account: UserDetailsSchema,
 
     )
     new_password = Password_Model(
-        pass_id=1,
-        ac_id=1,
         password_hash=account.password_hash,
         pass_salt=password_salt_generator(),
         created_at=dt.now(tz=pytz.timezone("Europe/London")),
         updated_at=dt.now(tz=pytz.timezone("Europe/London")),
-        created_by=1,
-        updated_by=1
     )
 
     try:
@@ -61,5 +54,7 @@ def add_account_details(account: UserDetailsSchema,
         _db.refresh(new_account)
         _db.refresh(new_password)
         return {"status": True}
+        print("Account created successfully")
     except Exception as e:
         return {"status": False}
+        print(f"Error: {e}")

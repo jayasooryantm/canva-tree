@@ -6,7 +6,7 @@ from sqlalchemy import pool
 from alembic import context
 
 from DataLayer.database_handler import Base
-from DataLayer.Migrations.all_tables import *
+from DataLayer.SQLModels.Models import *
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
