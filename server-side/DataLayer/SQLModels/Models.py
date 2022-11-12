@@ -7,7 +7,7 @@ from DataLayer.SQLModels.mixins import created_at
 class Account_Model(created_at, Base):
     __tablename__ = "account_data_tbl"
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     username = Column(String(15), nullable=True)
     email = Column(String(50), nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
@@ -20,7 +20,7 @@ class Account_Model(created_at, Base):
 class Password_Model(created_at, Base):
     __tablename__ = "password_data_tbl"
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     ac_id = Column(Integer, ForeignKey(
         "account_data_tbl.id"), nullable=False)
     password_hash = Column(Text, nullable=False)

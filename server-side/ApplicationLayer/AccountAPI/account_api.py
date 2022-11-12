@@ -3,7 +3,7 @@
 from BusinessLayer.AccountFunction.authenticator import AuthHandler
 from DataLayer.FastAPISchemas.Schemas import UserDetailsSchema
 from DataLayer.database_handler import get_db
-from BusinessLayer.AccountFunction.account_handler import register_user, user_login, user_account
+from BusinessLayer.AccountFunction.account_handler import register_user, user_login
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, Form
 
@@ -19,10 +19,11 @@ async def signup(email: str = Form(...), password: str = Form(...), _db: Session
 
 
 @router.post("/login")
-async def signin(account_info: UserDetailsSchema, _db: Session = Depends(get_db)):
+async def signin(email: str = Form(...), password: str = Form(...), _db: Session = Depends(get_db)):
+    account_info = UserDetailsSchema(email=email, password_hash=password)
     return user_login(account_info=account_info, _db=_db)
 
 
-@router.get("/account")
-async def account():
-    return user_account()
+@router.get("/protected")
+async def protected(email: str = Depends(_auth_handler.auth_wrapper)):
+    return {"email": email}

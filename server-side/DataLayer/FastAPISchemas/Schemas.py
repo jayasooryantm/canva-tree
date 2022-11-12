@@ -42,7 +42,7 @@ class UserDetailsSchema(PasswordBaseSchema):
 
 class PasswordCreateSchema(CreatedAt, PasswordBaseSchema):
     pass_id: int
-    ac_id: str
+    ac_id: int
     pass_salt: str
 
     class Config:
