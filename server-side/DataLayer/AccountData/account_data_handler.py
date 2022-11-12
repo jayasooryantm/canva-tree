@@ -47,14 +47,14 @@ def add_account_details(account: UserDetailsSchema,
         updated_at=dt.now(tz=pytz.timezone("Europe/London")),
     )
 
+    new_account.password = new_password
+
     try:
         _db.add(new_account)
-        _db.add(new_password)
         _db.commit()
         _db.refresh(new_account)
-        _db.refresh(new_password)
         return {"status": True}
         print("Account created successfully")
     except Exception as e:
-        return {"status": False}
         print(f"Error: {e}")
+        return {"status": False}
