@@ -31,9 +31,5 @@ def user_login(account_info: UserDetailsSchema, _db: Session):
         raise HTTPException(
             status_code=401, detail='Invalid username and/or password')
     token = _auth_handler.encode_token(user.email)
-    return {'token': token}
-
-
-def user_account():
-    email = Depends(_auth_handler.auth_wrapper)
-    return {"message": f"Hi {email}, Welcome to the home page"}
+    return {'token': token,
+            "user": user.email}

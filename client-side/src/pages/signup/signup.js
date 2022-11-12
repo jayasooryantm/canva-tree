@@ -18,7 +18,7 @@ function Signup() {
             body: _formData
         };
 
-        fetch('http://localhost:8000/signup', requestOptions)
+        fetch('/signup', requestOptions)
             .then(response => response.json())
             .then(data => console.log(data));
 

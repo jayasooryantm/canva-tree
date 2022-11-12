@@ -20,11 +20,12 @@ def get_user_by_email(account: UserDetailsSchema, _db: Session) -> UserDetailsSc
         _account = _db.query(Account_Model).filter(
             Account_Model.email == account.email).first()
         _password = _db.query(Password_Model).filter(
-            Password_Model.ac_id == _account.ac_id).first()
+            Password_Model.ac_id == _account.id).first()
         user_details = UserDetailsSchema(
             email=_account.email, password_hash=_password.password_hash)
     except Exception as e:
         print(f"Error: {e}")
+        user_details = None
     return user_details
 
 
@@ -54,7 +55,5 @@ def add_account_details(account: UserDetailsSchema,
         _db.commit()
         _db.refresh(new_account)
         return {"status": True}
-        print("Account created successfully")
     except Exception as e:
-        print(f"Error: {e}")
         return {"status": False}
