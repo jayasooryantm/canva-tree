@@ -1,5 +1,5 @@
 //Importing react libraries and files.
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -14,11 +14,20 @@ import NotFound from './pages/notfound/notfound.js';
 import Workspace from './pages/workspace/workspace';
 import Userdashboard from './pages/userdashboard/userdashboard';
 import ProtectedRoutes from './components/authenticator/protected.routes';
+import auth from './components/authenticator/auth';
 
 function App() {
+  const [IsLoggedIn, setIsLoggedIn] = useState("");
+
+  const getAuthStatus = () => {
+    setIsLoggedIn(auth.isAuthenticated())
+  }
+  useEffect(() => {
+    getAuthStatus();
+  }, [IsLoggedIn]);
   return (
     <div className='App'>
-      <Navbar />
+      <Navbar authStatus={IsLoggedIn} />
       <Routes>
 
         <Route path='/' exact element={<Landing />} />
