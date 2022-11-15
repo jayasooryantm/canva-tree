@@ -32,11 +32,10 @@ function Login() {
             setToken(null);
             setUser(null);
         }
-        //localStorage.setItem("getInToken", token);
-        //localStorage.setItem("userAccount", email);
-
-        setEmail('');
-        setPassword('');
+        else {
+            setEmail('');
+            setPassword('');
+        }
 
 
     };

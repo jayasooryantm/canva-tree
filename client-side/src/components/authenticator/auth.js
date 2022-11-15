@@ -17,7 +17,6 @@ class Auth {
             .then(data => {
                 if (data.email === this.currentUser) {
                     this.authenticated = true;
-                    console.log("Authenticated");
                     cb();
                 }
             });
@@ -25,6 +24,10 @@ class Auth {
     }
 
     logout(cb) {
+        this.currentUser = null;
+        this.getinToken = null;
+        localStorage.removeItem("getInToken");
+        localStorage.removeItem("userAccount");
         this.authenticated = false;
         cb();
     }

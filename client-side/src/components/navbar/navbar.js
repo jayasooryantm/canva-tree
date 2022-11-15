@@ -1,7 +1,7 @@
 import React from 'react'
 import "./navbar.css"
 
-function navbar() {
+function navbar(props) {
     return (
         <nav className="navbar navbar-expand-lg bg-light">
             <div className="container-fluid">
@@ -15,17 +15,17 @@ function navbar() {
                             <a className="nav-link" href="/pricing">Pricing</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/workspace">Workspace</a>
-                        </li>
-                        <li className="nav-item">
                             <a className="nav-link" href="/help">Help</a>
                         </li>
-                        <li className="nav-item">
+                        {!props.isAuth && (<li className="nav-item">
                             <a className="nav-link" href="/login">Login</a>
-                        </li>
-                        <li className="nav-item">
+                        </li>)}
+                        {!props.isAuth && (<li className="nav-item">
                             <a className="nav-link" href="/signup">Sign Up</a>
-                        </li>
+                        </li>)}
+                        {props.isAuth && (<li className="nav-item">
+                            <a className="nav-link" href="/help">Account</a>
+                        </li>)}
                     </ul>
                 </div>
             </div>
