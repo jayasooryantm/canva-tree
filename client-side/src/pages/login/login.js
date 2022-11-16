@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import auth from '../../components/authenticator/auth';
 
 import "./login.css"
 
 function Login() {
+    let navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [, setToken] = useState(localStorage.getItem("getInToken"));
@@ -26,16 +28,17 @@ function Login() {
             .then(data => {
                 localStorage.setItem("getInToken", data.token);
                 localStorage.setItem("userAccount", data.user);
-            });
+            }).then(
+                auth.login(() => {
+                    navigate("/userdashboard", { replace: true });
+                }));
 
         if (!response.ok) {
             setToken(null);
             setUser(null);
         }
-        else {
-            setEmail('');
-            setPassword('');
-        }
+        setEmail('');
+        setPassword('');
 
 
     };
