@@ -35,6 +35,7 @@ class UserDetailsSchema(PasswordBaseSchema):
 
     email: str
     username: str | None = None
+    id: int | None = None
 
     class Config:
         orm_mode = True

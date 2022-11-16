@@ -25,5 +25,5 @@ async def signin(email: str = Form(...), password: str = Form(...), _db: Session
 
 
 @router.get("/protected")
-async def protected(email: str = Depends(_auth_handler.auth_wrapper)):
-    return {"email": email}
+async def protected(userid: str = Depends(_auth_handler.auth_wrapper)):
+    return {"userid": userid}

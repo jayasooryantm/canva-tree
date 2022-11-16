@@ -15,14 +15,15 @@ def password_salt_generator(size=32, chars=string.ascii_lowercase + string.digit
     return ''.join(random.choice(chars) for _ in range(size))
 
 
-def get_user_by_email(account: UserDetailsSchema, _db: Session) -> UserDetailsSchema:
+def get_user_by_email(account: UserDetailsSchema, _db: Session):
     try:
         _account = _db.query(Account_Model).filter(
             Account_Model.email == account.email).first()
         _password = _db.query(Password_Model).filter(
             Password_Model.ac_id == _account.id).first()
-        user_details = UserDetailsSchema(
-            email=_account.email, password_hash=_password.password_hash)
+        user_details = UserDetailsSchema(id=_account.id,
+                                         email=_account.email,
+                                         password_hash=_password.password_hash)
     except Exception as e:
         print(f"Error: {e}")
         user_details = None

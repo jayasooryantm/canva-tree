@@ -2,7 +2,7 @@ class Auth {
     constructor() {
         this.authenticated = false;
         this.getinToken = localStorage.getItem("getInToken");
-        this.currentUser = localStorage.getItem("userAccount");
+        this.currentUser = parseInt(localStorage.getItem("userAccount"));
     }
 
     login(cb) {
@@ -15,7 +15,7 @@ class Auth {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.email === this.currentUser) {
+                if (data.userid === this.currentUser) {
                     this.authenticated = true;
                     cb();
                 }
