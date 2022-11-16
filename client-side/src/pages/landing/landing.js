@@ -47,7 +47,7 @@ function Landing() {
                             <p>With thousands of professional templates, images and quality content to choose from, get a headstart on bringing your best ideas and work to life.</p>
                             <button className='btn btn-success' onClick={() => {
                                 auth.login(() => {
-                                    navigate("/userdashboard");
+                                    navigate("/userdashboard", { replace: true });
                                 });
                             }}>Create a Design</button>
                         </div>
@@ -93,7 +93,7 @@ function Landing() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
