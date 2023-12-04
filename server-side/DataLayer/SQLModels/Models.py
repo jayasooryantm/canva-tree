@@ -8,7 +8,7 @@ class Account_Model(created_at, Base):
     __tablename__ = "account_data_tbl"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    username = Column(String(15), nullable=True)
+    username = Column(String(30), nullable=True)
     email = Column(String(50), nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
     is_email_verified = Column(Boolean, default=False, nullable=False)

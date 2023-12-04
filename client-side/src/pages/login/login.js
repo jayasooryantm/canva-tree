@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import auth from '../../components/authenticator/auth';
 
@@ -10,6 +10,13 @@ function Login() {
     const [password, setPassword] = useState('');
     const [, setToken] = useState(localStorage.getItem("getInToken"));
     const [, setUser] = useState(localStorage.getItem("userAccount"));
+
+    useEffect(() => {
+        auth.login(() => {
+            navigate("/userdashboard", { replace: true });
+        })
+
+    }, [])
 
     const handleSubmit = event => {
         event.preventDefault();

@@ -3,11 +3,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from core.routes import _api_Router
 
-from DataLayer.SQLModels.Models import *
-from DataLayer.database_handler import _engine
+from DataLayer.migrations import CreateTablesMetaData
 
-Account_Model.metadata.create_all(_engine)
-Password_Model.metadata.create_all(_engine)
+CreateTablesMetaData()
 
 app = FastAPI()
 app.include_router(_api_Router)
